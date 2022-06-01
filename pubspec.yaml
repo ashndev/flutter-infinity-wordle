@@ -1,0 +1,30 @@
+name: flutter_wordle
+description: A new Flutter project.
+publish_to: 'none' 
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.2 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  freezed_annotation: ^2.0.3
+  flutter_riverpod: ^2.0.0-dev.9
+  flip_card: ^0.6.0
+  flash: ^2.0.3+2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.1
+  freezed: ^2.0.3+1
+  build_runner: ^2.1.11
+flutter:
+
+  uses-material-design: true
