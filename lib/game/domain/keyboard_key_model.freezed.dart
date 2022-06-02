@@ -30,6 +30,8 @@ abstract class $KeyboardKeyModelCopyWith<$Res> {
           KeyboardKeyModel value, $Res Function(KeyboardKeyModel) then) =
       _$KeyboardKeyModelCopyWithImpl<$Res>;
   $Res call({String key, AnswerStatus keyStatus});
+
+  $AnswerStatusCopyWith<$Res> get keyStatus;
 }
 
 /// @nodoc
@@ -57,6 +59,13 @@ class _$KeyboardKeyModelCopyWithImpl<$Res>
               as AnswerStatus,
     ));
   }
+
+  @override
+  $AnswerStatusCopyWith<$Res> get keyStatus {
+    return $AnswerStatusCopyWith<$Res>(_value.keyStatus, (value) {
+      return _then(_value.copyWith(keyStatus: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -67,6 +76,9 @@ abstract class _$$_KeyboardKeyModelCopyWith<$Res>
       __$$_KeyboardKeyModelCopyWithImpl<$Res>;
   @override
   $Res call({String key, AnswerStatus keyStatus});
+
+  @override
+  $AnswerStatusCopyWith<$Res> get keyStatus;
 }
 
 /// @nodoc
@@ -102,7 +114,7 @@ class __$$_KeyboardKeyModelCopyWithImpl<$Res>
 
 class _$_KeyboardKeyModel extends _KeyboardKeyModel {
   const _$_KeyboardKeyModel(
-      {required this.key, this.keyStatus = AnswerStatus.blank})
+      {required this.key, this.keyStatus = const AnswerStatus.blank()})
       : super._();
 
   @override

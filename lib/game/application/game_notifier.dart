@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/data/keyboard_keys.dart';
 import '../../core/data/word_list.dart';
+import '../domain/answer_status.dart';
 import '../domain/keyboard_key_model.dart';
 import '../domain/letter.dart';
 import '../domain/word.dart';
@@ -103,16 +104,16 @@ class GameNotifier extends StateNotifier<GameState> {
                       keyboardKeyModelList.map((keyboardKeyModel) {
                         if (guessToSubmit.any((letter) =>
                             letter.letter == keyboardKeyModel.key &&
-                            letter.letterStatus == AnswerStatus.correct)) {
+                            letter.letterStatus == const AnswerStatus.correct())) {
                           return keyboardKeyModel.copyWith(
-                            keyStatus: AnswerStatus.correct,
+                            keyStatus: const AnswerStatus.correct(),
                           );
                         } else {
                           final firstInstanceOfMatch = guessToSubmit.firstWhere(
                               (letter) =>
                                   letter.letter == keyboardKeyModel.key &&
                                   keyboardKeyModel.keyStatus !=
-                                      AnswerStatus.correct,
+                                      const AnswerStatus.correct(),
                               orElse: () => Letter(
                                     letter: keyboardKeyModel.key,
                                     letterStatus: keyboardKeyModel.keyStatus,
@@ -131,7 +132,7 @@ class GameNotifier extends StateNotifier<GameState> {
                 .map(
                   (e) => Letter(
                     letter: e,
-                    letterStatus: AnswerStatus.correct,
+                    letterStatus: const AnswerStatus.correct(),
                   ),
                 )
                 .toList();
@@ -157,7 +158,7 @@ class GameNotifier extends StateNotifier<GameState> {
                   guessToSubmit.add(
                     Letter(
                       letter: guessWordLetter,
-                      letterStatus: AnswerStatus.correct,
+                      letterStatus: const AnswerStatus.correct(),
                     ),
                   );
                 } else {
@@ -171,7 +172,7 @@ class GameNotifier extends StateNotifier<GameState> {
                       guessToSubmit
                           .where((letter) =>
                               letter.letter == guessWordLetter &&
-                              letter.letterStatus == AnswerStatus.wrongPlace)
+                              letter.letterStatus == const AnswerStatus.wrongPlace())
                           .length;
                   final guessWordLettersInGameWord = gameWord
                       .where((letter) => letter == guessWordLetter)
@@ -181,14 +182,14 @@ class GameNotifier extends StateNotifier<GameState> {
                     guessToSubmit.add(
                       Letter(
                         letter: guessWordLetter,
-                        letterStatus: AnswerStatus.wrongPlace,
+                        letterStatus: const AnswerStatus.wrongPlace(),
                       ),
                     );
                   } else {
                     guessToSubmit.add(
                       Letter(
                         letter: guessWordLetter,
-                        letterStatus: AnswerStatus.wrong,
+                        letterStatus: const AnswerStatus.wrong(),
                       ),
                     );
                   }
@@ -197,7 +198,7 @@ class GameNotifier extends StateNotifier<GameState> {
                 guessToSubmit.add(
                   Letter(
                     letter: guessWordLetter,
-                    letterStatus: AnswerStatus.wrong,
+                    letterStatus: const AnswerStatus.wrong(),
                   ),
                 );
               }

@@ -1,12 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'answer_status.dart';
 part 'letter.freezed.dart';
-
-enum AnswerStatus {
-  correct,
-  wrongPlace,
-  wrong,
-  blank,
-}
 
 @freezed
 class Letter with _$Letter {

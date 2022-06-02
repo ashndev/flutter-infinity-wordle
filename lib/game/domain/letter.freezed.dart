@@ -28,6 +28,8 @@ abstract class $LetterCopyWith<$Res> {
   factory $LetterCopyWith(Letter value, $Res Function(Letter) then) =
       _$LetterCopyWithImpl<$Res>;
   $Res call({String letter, AnswerStatus letterStatus});
+
+  $AnswerStatusCopyWith<$Res> get letterStatus;
 }
 
 /// @nodoc
@@ -54,6 +56,13 @@ class _$LetterCopyWithImpl<$Res> implements $LetterCopyWith<$Res> {
               as AnswerStatus,
     ));
   }
+
+  @override
+  $AnswerStatusCopyWith<$Res> get letterStatus {
+    return $AnswerStatusCopyWith<$Res>(_value.letterStatus, (value) {
+      return _then(_value.copyWith(letterStatus: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -62,6 +71,9 @@ abstract class _$$_LetterCopyWith<$Res> implements $LetterCopyWith<$Res> {
       __$$_LetterCopyWithImpl<$Res>;
   @override
   $Res call({String letter, AnswerStatus letterStatus});
+
+  @override
+  $AnswerStatusCopyWith<$Res> get letterStatus;
 }
 
 /// @nodoc

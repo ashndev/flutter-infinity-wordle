@@ -14,42 +14,17 @@ class ResultDialog extends ConsumerWidget {
       backgroundColor: ColorPalette.dialogAndAppBarBackground,
       title: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                () {
-                  if (gameNotifierState.gameStatus == const GameStatus.won()) {
-                    return '🥳 ';
-                  } else if (gameNotifierState.gameStatus ==
-                      const GameStatus.lost()) {
-                    return '💀 ';
-                  } else {
-                    return '';
-                  }
-                }(),
-                style: const TextStyle(
-                  fontSize: 30,
-                ),
-              ),
-              Text(
-                () {
-                  if (gameNotifierState.gameStatus == const GameStatus.won()) {
-                    return 'Yay, You Won!';
-                  } else if (gameNotifierState.gameStatus ==
-                      const GameStatus.lost()) {
-                    return "You're Toast, \n You Lost!";
-                  } else {
-                    return '';
-                  }
-                }(),
-                style: const TextStyle(
-                  fontSize: 24,
-                  color: Colors.white,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ],
+          Text(
+            gameNotifierState.gameStatus.maybeWhen(
+              won: () => "🥳 Yay, You Won!",
+              lost: () => "💀 You're Toast, \n You Lost!",
+              orElse: () => '',
+            ),
+            style: const TextStyle(
+              fontSize: 24,
+              color: Colors.white,
+            ),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 10),
           Text(
